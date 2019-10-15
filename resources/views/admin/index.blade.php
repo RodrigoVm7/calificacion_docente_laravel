@@ -12,7 +12,7 @@
 @endif
 
 
-<!--Seccion que mediante 4 botones, ofrecerá distintas funcionalidades al administrador.
+<!--Sección que mediante 9 botones, ofrecerá distintas funcionalidades al administrador.
 	Cada botón, redirige a distintas url, según lo que se desee realizar-->
 <br/>
 <br/>
