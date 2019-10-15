@@ -24,7 +24,7 @@
 <a href="{{ url('admin/academicos') }}" class="btn btn-primary" >Académicos</a>
 <a href="{{ url('admin/añadir') }}" class="btn btn-secondary" >Evaluar</a>
 <a href="{{ url('admin/añadir') }}" class="btn btn-secondary" >Reportes</a>
-<a href="{{ url('admin/usuarios') }}" class="btn btn-primary" >Usuarios</a>
+<a href="{{ url('admin/usuarios') }}" class="btn btn-primary" >Usuario</a>
 <a href="{{ url('admin/añadir') }}" class="btn btn-secondary" >Periodos</a>
 <br/>
 <br/>
