@@ -21,7 +21,7 @@ class usersController extends Controller {
     }
 
     public function mostrar(){
-    	$datos=User::all();
+    	$datos=User::paginate(3);
     	return view('user.index',compact('datos'));
     }
 
