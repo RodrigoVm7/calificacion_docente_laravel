@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class FacultadController extends Controller{
 
     public function index(){
-    	$datos=Facultad::all();
+    	$datos=Facultad::paginate(3);
     	return view('facultad.index',compact('datos'));
     }
 
