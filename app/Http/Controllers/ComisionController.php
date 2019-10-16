@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class ComisionController extends Controller{
 
     public function index(){
-    	$datos=Comision::all();
+    	$datos=Comision::paginate(3);
     	return view('comision.index',compact('datos'));
     }
 
