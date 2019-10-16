@@ -9,7 +9,7 @@ class AcademicoController extends Controller
 {
 
     public function index(){
-    	$datos=Academico::all();
+    	$datos=Academico::paginate(3);
     	return view('academico.index',compact('datos'));
     }
 

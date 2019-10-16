@@ -61,5 +61,9 @@
 	</tbody>
 </table>
 
+<div class="text-center">
+	{{$datos->links()}}
+</div>
+
 </div>
 @endsection
