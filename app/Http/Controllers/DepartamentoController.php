@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class DepartamentoController extends Controller{
 
     public function index(){
-        $datos=Departamento::all();
+        $datos=Departamento::paginate(3);
         return view('departamento.index',compact('datos'));
     }
 
