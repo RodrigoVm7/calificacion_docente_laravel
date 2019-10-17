@@ -23,7 +23,7 @@
 
 <a href="{{ url('admin/añadirAcademico') }}" class="btn btn-success" >✚ Nuevo Académico</a>
 <a href="{{ url('admin/academicos') }}" class="btn btn-success" >↻ Refrescar</a>
-<a href="{{ url('index') }}" class="btn btn-success" >Regresar</a>
+<a href="{{ url('index') }}" class="btn btn-success" >⏎ Regresar</a>
 <br/>
 <br/>
 

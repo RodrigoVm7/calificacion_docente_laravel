@@ -23,7 +23,7 @@
 
 <a href="{{ url('admin/añadirUsuario') }}" class="btn btn-success" >✚ Nuevo Usuario</a>
 <a href="{{ url('admin/usuarios') }}" class="btn btn-success" >↻ Refrescar</a>
-<a href="{{ url('index') }}" class="btn btn-success" >Regresar</a>
+<a href="{{ url('index') }}" class="btn btn-success" >⏎ Regresar</a>
 
 <a href="{{ url('admin/reenviarContraseña') }}" class="btn btn-secondary" >↻ Reenvio de Contraseña</a>
 
