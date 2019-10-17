@@ -23,7 +23,7 @@
 
 <a href="{{ url('admin/añadirFacultad') }}" class="btn btn-success" >✚ Nueva Facultad</a>
 <a href="{{ url('admin/facultades') }}" class="btn btn-success" >↻ Refrescar</a>
-<a href="{{ url('index') }}" class="btn btn-success" >Regresar</a>
+<a href="{{ url('index') }}" class="btn btn-success" >⏎ Regresar</a>
 <br/>
 <br/>
 

@@ -23,7 +23,7 @@
 
 <a href="{{ url('admin/añadirDepartamento') }}" class="btn btn-success" >✚ Nuevo Departamento</a>
 <a href="{{ url('admin/departamentos') }}" class="btn btn-success" >↻ Refrescar</a>
-<a href="{{ url('index') }}" class="btn btn-success" >Regresar</a>
+<a href="{{ url('index') }}" class="btn btn-success" >⏎ Regresar</a>
 <br/>
 <br/>
 

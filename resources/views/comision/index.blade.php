@@ -23,7 +23,7 @@
 
 <a href="{{ url('admin/añadirComision') }}" class="btn btn-success" >✚ Nueva Comisión</a>
 <a href="{{ url('admin/comisiones') }}" class="btn btn-success" >↻ Refrescar</a>
-<a href="{{ url('index') }}" class="btn btn-success" >Regresar</a>
+<a href="{{ url('index') }}" class="btn btn-success" >⏎ Regresar</a>
 <br/>
 <br/>
 
