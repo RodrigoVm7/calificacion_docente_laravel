@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\facultad;
 use Illuminate\Http\Request;
 use Mail;
 use Illuminate\Support\Facades\Hash;
@@ -26,7 +27,8 @@ class usersController extends Controller {
     }
 
     public function create(){
-    	return view('user.create');
+        $facultades=facultad::all();
+    	return view('user.create',compact('facultades'));
     }
 
     public function store(Request $request){
@@ -35,7 +37,7 @@ class usersController extends Controller {
             'apellidos' => 'required|string|max:100',
             'rut' => 'required|string|max:100',
             'email' => 'required|string|max:100',
-            'facultad' => 'required|string|max:100'
+            'facultad' => 'required|string|min:2'
         ];
         $Mensaje=["required"=>'El :attribute es requerido'];
         $this->validate($request,$campos,$Mensaje);

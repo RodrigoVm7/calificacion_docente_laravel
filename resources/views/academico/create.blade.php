@@ -80,10 +80,9 @@
 				border: 1px solid #ced4da;
 				border-radius: .25rem;">
 			<option selected></option>	
-				<option value="Dpto. Ciencias Sociales">Dpto. Ciencias Sociales</option>
-				<option value="Dpto. Economía">Dpto. Economía</option>
-				<option value="Dpto. Computación e Industrias">Dpto. Computación e Industrias</option>
-				<option value="Dpto. Obras Civiles">Dpto. Obras Civiles</option>
+				@foreach($departamentos as $dato)
+					<option value="{{$dato->nombre}}">{{$dato->nombre}}</option>
+				@endforeach
 		</select>
 		{!! $errors->first('departamento','<div class="invalid-feedback">:message</div>') !!}
 	</div>

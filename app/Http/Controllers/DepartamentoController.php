@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Departamento;
+use App\Facultad;
 use Illuminate\Http\Request;
 
 class DepartamentoController extends Controller{
@@ -13,13 +14,14 @@ class DepartamentoController extends Controller{
     }
 
     public function create(){
-    	return view('departamento.create');
+        $facultades=facultad::all();
+    	return view('departamento.create',compact('facultades'));
     }
 
     public function store(Request $request){
     	$campos=[
             'nombre' => 'required|string|min:2',
-            'facultad' => 'required|string|max:100'
+            'facultad' => 'required|string|min:2'
         ];
         $Mensaje=["required"=>'El :attribute es requerido'];
         $this->validate($request,$campos,$Mensaje);

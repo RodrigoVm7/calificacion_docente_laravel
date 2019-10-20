@@ -42,8 +42,24 @@
 	</div>
 
 	<div class="form-group">
-		<label for="facultad" class="control-label">{{'Facultad'}}</label>
-		<input type="text" class="form-control {{$errors->has('facultad')?'is-invalid':''}}" name="facultad" id="facultad" placeholder="Facultad">
+		<label for="facultad" class="control-label">{{'Facultad'}}</label><br>
+		<select name="facultad" size="1" style="
+			    display: block;
+				width: 100%;
+    			height: calc(2.19rem + 2px);
+				padding: .375rem .75rem;
+				font-size: .9rem;
+				line-height: 1.6;
+				color: #495057;
+				background-color: #fff;
+				background-clip: padding-box;
+				border: 1px solid #ced4da;
+				border-radius: .25rem;">
+			<option selected></option>
+			@foreach($facultades as $dato)
+				<option value="{{$dato->nombre}}">{{$dato->nombre}}</option>
+			@endforeach
+		</select>
 		{!! $errors->first('facultad','<div class="invalid-feedback">:message</div>') !!}
 	</div>
 

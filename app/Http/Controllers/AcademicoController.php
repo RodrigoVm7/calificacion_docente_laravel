@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Academico;
+use App\Departamento;
 use Illuminate\Http\Request;
 
 class AcademicoController extends Controller
@@ -14,7 +15,8 @@ class AcademicoController extends Controller
     }
 
     public function create(Request $request){
-    	return view('academico.create');
+        $departamentos=Departamento::all();
+    	return view('academico.create',compact('departamentos'));
     }
 
     public function store(Request $request){
@@ -24,8 +26,8 @@ class AcademicoController extends Controller
             'apellido' => 'required|string|max:100',
             'titulo' => 'required|string|max:100',
             'grado_academico' => 'required|string|max:100',
-            'departamento' => 'required|string|max:100',
-            'categoria' => 'required|string|max:100',
+            'departamento' => 'required|string|min:2',
+            'categoria' => 'required|string|min:2',
             'horas_contrato' => 'required|string|max:100',
             'tipo_planta' => 'required|string|max:100',
         ];
