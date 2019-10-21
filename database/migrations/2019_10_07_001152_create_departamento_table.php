@@ -4,11 +4,9 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDepartamentoTable extends Migration
-{
+class CreateDepartamentoTable extends Migration{
 
-    public function up()
-    {
+    public function up(){
         Schema::create('departamento', function (Blueprint $table) {
             $table->bigIncrements('cod_departamento');
             $table->string('nombre');
@@ -19,8 +17,7 @@ class CreateDepartamentoTable extends Migration
     }
 
 
-    public function down()
-    {
+    public function down(){
         Schema::dropIfExists('departamento');
     }
 }

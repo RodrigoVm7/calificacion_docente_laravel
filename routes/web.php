@@ -57,5 +57,7 @@ Route::post('/admin/usuario/{email}/update','usersController@update');
 Route::get('/admin/reenviarContraseña','usersController@reenviarContraseña');
 Route::get('/admin/usuario/{email}/nuevaContraseña','usersController@nuevaContraseña');
 
+Route::get('/admin/periodos','PeriodoController@index');
+Route::post('/admin/añoPeriodo/','PeriodoController@accion');
 
 
