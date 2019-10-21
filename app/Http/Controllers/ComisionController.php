@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Comision;
+use App\facultad;
 use Illuminate\Http\Request;
 
 class ComisionController extends Controller{
@@ -13,13 +14,14 @@ class ComisionController extends Controller{
     }
 
     public function create(Request $request){
-    	return view('comision.create');
+        $facultades=facultad::all();
+    	return view('comision.create',compact('facultades'));
     }
 
     public function store(Request $request){
     	$campos=[
             'año' => 'required|string|min:2',
-            'facultad' => 'required|string|max:100',
+            'facultad' => 'required|string|min:2',
             'rut_academico' => 'required|string|max:100',
             'decano' => 'required|string|max:100',
             'miembro1' => 'required|string|max:100',
