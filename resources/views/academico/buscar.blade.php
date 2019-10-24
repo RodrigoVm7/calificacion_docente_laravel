@@ -49,7 +49,7 @@
 	</tbody>
 </table>
 
-<a href="{{ url('admin/academicos') }}" class="btn btn-success" >Volver</a>
+<a href="{{ url('admin/academicos') }}" class="btn btn-success" >REgresar</a>
 
 </div>
 @endsection
