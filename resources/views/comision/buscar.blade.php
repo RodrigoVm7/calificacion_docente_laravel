@@ -51,7 +51,7 @@
 	</tbody>
 </table>
 
-<a href="{{ url('admin/comisiones') }}" class="btn btn-success" >Regresar</a>
+<a href="{{ url('admin/comisiones') }}" class="btn btn-success" >Volver</a>
 
 </div>
 @endsection
