@@ -40,8 +40,7 @@
 <a href="{{ url('reportes') }}" class="btn btn-primary" >Reportes</a>
 <a href="{{ url('admin/usuarios') }}" class="btn btn-primary" >Usuarios</a>
 <a href="{{ url('admin/periodos') }}" class="btn btn-primary" >Periodos</a>
-<br/>
-<br/>
+<br><br>
 
 <div class="imagenUcm"><img src="{{asset('images/UCM.png')}}" width="400" height="180"></div>
 
