@@ -60,6 +60,7 @@
 
             .m-b-md {
                 margin-bottom: 90px;
+<<<<<<< HEAD
             }
 
             .imagenUcm{
@@ -71,7 +72,21 @@
                 left: 0;
                 margin-right: auto;
                 margin-left: auto;
+=======
+>>>>>>> 42a19d570bc808b6b9e1ceecfca9d33a84df2615
             }
+            
+            .imagenUcm{
+		        text-align: center;
+                opacity:0.4;
+                position: fixed;
+                bottom:100px;
+                right: 0;
+                left: 0;
+                margin-right: auto;
+                margin-left: auto;
+	        }
+
         </style>
     </head>
     <body>

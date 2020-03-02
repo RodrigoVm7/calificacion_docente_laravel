@@ -39,5 +39,7 @@
 
 <div class="imagenUcm"> <img src="{{asset('images/UCM.png')}}" width="400" height="180"> </div>
 
+<div class="imagenUcm"> <img src="{{asset('images/UCM.png')}}" width="400" height="180"> </div>
+
 </div>
 @endsection
