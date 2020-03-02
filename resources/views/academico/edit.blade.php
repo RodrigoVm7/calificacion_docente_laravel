@@ -4,9 +4,9 @@
 
 <div class="container">
 
-<!--Seccion que mediante el llenado de un formulario, permite editar una encuesta.
-	Posteriormente, los datos son enviados mediante el método POST a la url "/encuestas/{ID}"-->
-<form action="{{ url('/admin/academico/'.$academico->rut.'/update')}}" class="form-horizontal" method="post">
+<!--Seccion que mediante el llenado de un formulario, permite editar una académico.
+	Posteriormente, los datos son enviados mediante el método POST a la url "/académico/{rut}/update"-->
+<form action="{{ url('/academico/'.$academico->rut.'/update')}}" class="form-horizontal" method="post">
 {{ csrf_field() }}
 
 <h2>Editar Académico</h2>
@@ -37,13 +37,58 @@
 	</div>
 
 	<div class="form-group">
-		<label for="departamento" class="control-label">{{'Departamento'}}</label>
-		<input type="text" class="form-control" name="departamento" id="departamento" value="{{ $academico->departamento}}">
+		<label for="departamento" class="control-label">{{'Departamento'}}</label><br>
+		<select name="departamento" id="departamento" size="1" style="
+			    display: block;
+				width: 100%;
+    			height: calc(2.19rem + 2px);
+				padding: .375rem .75rem;
+				font-size: .9rem;
+				line-height: 1.6;
+				color: #495057;
+				background-color: #fff;
+				background-clip: padding-box;
+				border: 1px solid #ced4da;
+				border-radius: .25rem;">
+			<option selected value="{{$academico->departamento}}">{{$academico->departamento}}</option>
+			@foreach($departamentos as $departamento)
+				@if($departamento->nombre != $academico->departamento)
+					<option value="{{$departamento->nombre}}">{{$departamento->nombre}}</option>
+				@endif
+			@endforeach
+		</select>
+		{!! $errors->first('departamento','<div class="invalid-feedback">:message</div>') !!}
 	</div>
 
 	<div class="form-group">
-		<label for="categoria" class="control-label">{{'Categoria'}}</label>
-		<input type="text" class="form-control" name="categoria" id="categoria" value="{{ $academico->categoria}}">
+		<label for="categoria" class="control-label">{{'Categoria'}}</label><br>
+		<select name="categoria" id="categoria" size="1" style="
+			    display: block;
+				width: 100%;
+    			height: calc(2.19rem + 2px);
+				padding: .375rem .75rem;
+				font-size: .9rem;
+				line-height: 1.6;
+				color: #495057;
+				background-color: #fff;
+				background-clip: padding-box;
+				border: 1px solid #ced4da;
+				border-radius: .25rem;">
+			<option selected value="{{$academico->categoria}}">{{$academico->categoria}}</option>
+			@if($academico->categoria != "Instructor")
+				<option value="Instructor">Instructor</option>
+			@endif
+			@if($academico->categoria != "Auxiliar")
+				<option value="Auxiliar">Auxiliar</option>
+			@endif
+			@if($academico->categoria != "Adjunto")
+				<option value="Adjunto">Adjunto</option>
+			@endif
+			@if($academico->categoria != "Titular")
+				<option value="Titular">Titular</option>
+			@endif
+		</select>
+		{!! $errors->first('categoria','<div class="invalid-feedback">:message</div>') !!}
 	</div>
 
 	<div class="form-group">
@@ -57,13 +102,32 @@
 	</div>
 
 	<div class="form-group">
-		<label for="estado" class="control-label">{{'Estado'}}</label>
-		<input type="text" class="form-control" name="estado" id="estado" value="{{ $academico->estado}}">
+		<label for="estado" class="control-label">{{'Estado'}}</label><br>
+		<select name="estado" id="estado" size="1" style="
+			    display: block;
+				width: 100%;
+    			height: calc(2.19rem + 2px);
+				padding: .375rem .75rem;
+				font-size: .9rem;
+				line-height: 1.6;
+				color: #495057;
+				background-color: #fff;
+				background-clip: padding-box;
+				border: 1px solid #ced4da;
+				border-radius: .25rem;">
+			<option selected value="{{$academico->estado}}">{{$academico->estado}}</option>
+			@if($academico->estado=="ACTIVO")
+				<option value="INACTIVO">INACTIVO</option>
+			@elseif($academico->estado=="INACTIVO")
+				<option value="ACTIVO">ACTIVO</option>
+			@endif
+		</select>
+		{!! $errors->first('Estado','<div class="invalid-feedback">:message</div>') !!}
 	</div>
 
 	<input type="submit" class="btn btn-success" value="Modificar ✍">
 
-	<a class="btn btn-primary" href="{{ url('admin/academicos') }}">Regresar ←</a>
+	<a class="btn btn-primary" href="{{ url('academicos') }}">Regresar ←</a>
 
 </form>
 </div>

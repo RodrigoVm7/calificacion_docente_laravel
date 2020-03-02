@@ -10,10 +10,7 @@
 {{ Session::get('Mensaje')}}
 </div>
 @endif
-
-
-<br/>
-<br/>
+<br><br>
 
 <!-- Seccion que permite que hará que todo lo que se muestre a continuacion, sea dentro de una tabla-->
 <table class="table table-light table-hover">
@@ -30,9 +27,9 @@
 			<th>Editar</th>
 		</tr>
 	</thread>
-
 	<tbody>
-		<!-- Mediante un ciclo For, se mostrará dentro de la tabla el contenido de cada encuesta-->
+		<!-- Mediante un ciclo For, se mostrará dentro de la tabla el contenido de cada usuario, junto con un boton que permite editar
+			 su informacion-->
 		@foreach($datos as $user)
 		<tr>
 			<td>{{ $user->nombre}}</td>

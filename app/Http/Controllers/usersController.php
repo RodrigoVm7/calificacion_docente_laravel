@@ -14,23 +14,29 @@ class usersController extends Controller {
 
     public function index(Request $request){
     	$tipo=$request->user()->permiso;
-    	if($tipo=='admin'){
+    	if($tipo=='Admin'){
     		return view('admin.index');
     	}else{
     		return view('secretario.index');
     	}
     }
 
+    /* Funcion que retorna a la pagina principal de la pestaña Usuarios en el menu de Administrador, junto con los datos de los usuarios
+       existentes. */
     public function mostrar(){
     	$datos=User::paginate(3);
     	return view('user.index',compact('datos'));
     }
 
+    /* Funcion que retorna a la pagina que permite crear un nuevo usuario*/
     public function create(){
         $facultades=facultad::all();
     	return view('user.create',compact('facultades'));
     }
 
+    /* Funcion que recibe los datos del formulario para crear un nuevo usuario, para posteriormente ingresarlo a la base de datos. Ademas, 
+       el sistema se encarga de generar la contraseña de ingreso para el nuevo usuario, la cual se le envia al usuario en cuestion al 
+       correo electronico ingresado. */
     public function store(Request $request){
         $campos=[
             'nombre' => 'required|string|min:2',
@@ -60,28 +66,37 @@ class usersController extends Controller {
         return redirect('admin/usuarios')->with('Mensaje','Usuario añadido correctamente. Contraseña enviada al email');
     }
 
+    /* Función que retorna una vista con los datos del usuario buscado mediante el rut*/
     public function buscar(Request $request){
         $rut=request()->input('rut');
         $datos=User::where('rut','=',$rut)->get();
         return view('user.buscar',compact('datos'));
     }
 
+    /* Función que retorna a la página que permite editar la información de un usuario en particular*/
     public function edit($email){
         $user=User::findOrFail($email);
-        return view('user.edit',compact('user'));
+        $facultades=facultad::all();
+        return view('user.edit',compact('user','facultades'));
     }
 
+    /* Función que recibe los datos del formulario para editar un usuario, para posteriormente ingresar a la base de datos la 
+       información actualizada*/
     public function update(Request $request, $email){
         $datosUsuario=request()->except('_token');
         User::where('email','=',$email)->update($datosUsuario);
         return redirect('admin/usuarios')->with('Mensaje','Académico actualizado correctamente');
     }
 
+    /* Función que retorna a la página principal de la pestaña Usuarios en el menú de Administrador, pero con la columna de reenviar 
+       contraseñas habilitada. */
     public function reenviarContraseña(Request $request){
         $datos=User::all();
         return view('user.indexReenviarContraseña',compact('datos'));
     }
 
+    /* Función que se encarga de generar una nueva contraseña para un usuario, la cuál es actualizada en la base de datos y a su vez es
+       es enviada al correo electrónico del usuario en cuestión. */
     public function nuevaContraseña($email){
         $pass=random_int(100, 1000);
         User::where('email','=',$email)->update(['password'=>Hash::make($pass)]);

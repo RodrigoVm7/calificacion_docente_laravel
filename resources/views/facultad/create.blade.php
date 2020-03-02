@@ -1,23 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-<link rel="stylesheet" href="css/font-awesome.css">
-<link rel="stylesheet" href="css/estilo.css">
 
 <div class="container">
-
-<style>
-	p {
- 		 font-size: 200%;
-	}
-	.rojo {
- 		 color: red;
-	}
-	.verde {
-  		color: green;
-	}	
-</style>
-
 
 <!-- Seccion que permite mostrar mensajes en pantalla-->
 @if(count($errors)>0)
@@ -30,8 +15,8 @@
 </div>
 @endif
 
-<!--Seccion que mediante el llenado de un formulario, permite crear una encuesta.
-	Posteriormente, los datos son enviados mediante el método POST a la url "/encuestas"-->
+<!--Seccion que mediante el llenado de un formulario, permite crear una facultad.
+	Posteriormente, los datos son enviados mediante el método POST a la url "/admin/guardarFacultad"-->
 <form action="{{url('/admin/guardarFacultad')}}" class="form-horizontal" method="post">
 	{{ csrf_field() }}
 

@@ -4,7 +4,7 @@
 
 <div class="container">
 
-<!-- Seccion que permite mostrar mensajes en pantalla-->
+<!-- Sección que permite mostrar mensajes en pantalla-->
 @if(Session::has('Mensaje'))
 <div class="alert alert-success" role="alert">
 {{ Session::get('Mensaje')}}
@@ -18,7 +18,7 @@
 <!-- Seccion que permite que hará que todo lo que se muestre a continuacion, sea dentro de una tabla-->
 <table class="table table-light table-hover">
 
-	<!-- Cabecera de la tabla, donde se especifica los datos que tendrá cada columna-->
+	<!-- Cabecera de la tabla, donde se define el nombre que tendrá cada columna-->
 	<thread class="thread-light">
 		<tr>
 			<th>Facultad</th>
@@ -33,7 +33,8 @@
 	</thread>
 
 	<tbody>
-		<!-- Mediante un ciclo For, se mostrará dentro de la tabla el contenido de cada encuesta-->
+		<!-- Mediante un ciclo For, se mostrará dentro de la tabla el contenido de cada comisión, junto con un botón que permite
+			 editar la comisión seleccionada-->
 		@foreach($datos as $comision)
 		<tr>
 			<td>{{ $comision->facultad}}</td>
@@ -44,14 +45,14 @@
 			<td>{{ $comision->miembro2}}</td>
 			<td>{{ $comision->estado}}</td>
 			<td>
-			<a class="btn btn-warning" href="{{ url('/admin/editarComision'.$comision->id_comision.'/edit') }}">✎
+			<a class="btn btn-warning" href="{{ url('comision/'.$comision->id_comision.'/edit') }}">✎
 			</td>
 		</tr>
 		@endforeach
 	</tbody>
 </table>
 
-<a href="{{ url('admin/comisiones') }}" class="btn btn-success" >Regresar</a>
+<a href="{{ url('comisiones') }}" class="btn btn-success" >Regresar</a>
 
 </div>
 @endsection

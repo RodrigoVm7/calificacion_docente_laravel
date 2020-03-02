@@ -11,8 +11,9 @@
 </div>
 @endif
 
-<!-- Boton que se ubicará en la parte superior de la pantalla, y redigirá a una url para agregar encuestas-->
 <h2>Departamentos</h2><br>
+
+<!-- Formulario que permite buscar un departamento en particular a traves del codigo de departamento-->
 <form action="{{url('/admin/buscarDepartamento')}}" class="form-horizontal" method="post">
 	{{ csrf_field() }}
 	<div class="form-group">
@@ -21,11 +22,11 @@
 	</div>
 </form>
 
+<!-- Conjunto de botones que permite agregar un nuevo departamento, refrescar la página y regresar atras en la pantalla de navegacion-->
 <a href="{{ url('admin/añadirDepartamento') }}" class="btn btn-success" >✚ Nuevo Departamento</a>
 <a href="{{ url('admin/departamentos') }}" class="btn btn-success" >↻ Refrescar</a>
 <a href="{{ url('index') }}" class="btn btn-success" >⏎ Regresar</a>
-<br/>
-<br/>
+<br><br>
 
 <!-- Seccion que permite que hará que todo lo que se muestre a continuacion, sea dentro de una tabla-->
 <table class="table table-light table-hover">
@@ -41,7 +42,8 @@
 	</thread>
 
 	<tbody>
-		<!-- Mediante un ciclo For, se mostrará dentro de la tabla el contenido de cada encuesta-->
+		<!-- Mediante un ciclo For, se mostrará dentro de la tabla el contenido de cada departamento, junto con un boton que permite
+			 editar los datos del departamento seleccionado-->
 		@foreach($datos as $departamento)
 		<tr>
 			<td>{{ $departamento->nombre}}</td>

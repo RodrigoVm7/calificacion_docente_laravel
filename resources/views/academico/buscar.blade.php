@@ -11,9 +11,7 @@
 </div>
 @endif
 
-
-<br/>
-<br/>
+<br><br>
 
 <!-- Seccion que permite que hará que todo lo que se muestre a continuacion, sea dentro de una tabla-->
 <table class="table table-light table-hover">
@@ -32,7 +30,8 @@
 	</thread>
 
 	<tbody>
-		<!-- Mediante un ciclo For, se mostrará dentro de la tabla el contenido de cada encuesta-->
+		<!-- Mediante un ciclo For, se mostrará dentro de la tabla el contenido de cada académico, junto con un botón que permitirá
+			 redirigir a editar el académico seleccionado-->
 		@foreach($datos as $academico)
 		<tr>
 			<td>{{ $academico->rut}}</td>
@@ -42,14 +41,14 @@
 			<td>{{ $academico->titulo}}</td>
 			<td>{{ $academico->estado}}</td>
 			<td>
-			<a class="btn btn-warning" href="{{ url('/admin/editarAcademico'.$academico->rut.'/edit') }}">✎
+			<a class="btn btn-warning" href="{{ url('/academico/'.$academico->rut.'/edit') }}">✎
 			</td>
 		</tr>
 		@endforeach
 	</tbody>
 </table>
 
-<a href="{{ url('admin/academicos') }}" class="btn btn-success" >Regresar</a>
+<a href="{{ url('/academicos') }}" class="btn btn-success" >Regresar</a>
 
 </div>
 @endsection

@@ -1,23 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-<link rel="stylesheet" href="css/font-awesome.css">
-<link rel="stylesheet" href="css/estilo.css">
 
 <div class="container">
-
-<style>
-	p {
- 		 font-size: 200%;
-	}
-	.rojo {
- 		 color: red;
-	}
-	.verde {
-  		color: green;
-	}	
-</style>
-
 
 <!-- Seccion que permite mostrar mensajes en pantalla-->
 @if(count($errors)>0)
@@ -30,14 +15,20 @@
 </div>
 @endif
 
-<!--Seccion que mediante el llenado de un formulario, permite crear una encuesta.
-	Posteriormente, los datos son enviados mediante el método POST a la url "/encuestas"-->
-<form action="{{url('/admin/guardarComision')}}" class="form-horizontal" method="post">
+@if(Session::has('Mensaje'))
+<div class="alert alert-danger" role="alert">
+{{ Session::get('Mensaje')}}
+</div>
+@endif
+
+<!--Sección que mediante el llenado de un formulario, permite crear una comisión.
+	Posteriormente, los datos son enviados mediante el método POST a la url "/guardarComision"-->
+<form action="{{url('/guardarComision')}}" class="form-horizontal" method="post">
 	{{ csrf_field() }}
 
 	<div class="form-group">
 		<label for="año" class="control-label">{{'Año'}}</label>
-		<input type="text" class="form-control {{$errors->has('año')?'is-invalid':''}}" name="año" id="año" placeholder="Año en que la comisión evalúa">
+		<input type="number" class="form-control {{$errors->has('año')?'is-invalid':''}}" name="año" id="año" placeholder="Año en que la comisión evalúa" min="2019" max="2022" step="1">
 		{!! $errors->first('año','<div class="invalid-feedback">:message</div>') !!}
 	</div>
 
@@ -56,8 +47,8 @@
 				border: 1px solid #ced4da;
 				border-radius: .25rem;">
 			<option selected></option>
-			@foreach($facultades as $dato)
-				<option value="{{$dato->nombre}}">{{$dato->nombre}}</option>
+			@foreach($facultades as $facultad)
+				<option value="{{$facultad->nombre}}">{{$facultad->nombre}}</option>
 			@endforeach
 		</select>
 		{!! $errors->first('facultad','<div class="invalid-feedback">:message</div>') !!}
@@ -89,13 +80,13 @@
 
 	<div class="form-group">
 		<label for="fecha_pie" class="control-label">{{'Fecha Pie'}}</label>
-		<input type="text" class="form-control {{$errors->has('fecha_pie')?'is-invalid':''}}" name="fecha_pie" id="fecha_pie" placeholder="dd/mm/aaaa">
+		<input type="date" class="form-control" name="fecha_pie" id="fecha_pie" min="01-01-2019" max="31-12-2022">
 		{!! $errors->first('fecha_pie','<div class="invalid-feedback">:message</div>') !!}
 	</div>
 
 
 	<input type="submit" class="btn btn-success" value="Agregar ✚">
-	<a class="btn btn-primary" href="{{ url('admin/comisiones') }}">Regresar ←</a>
+	<a class="btn btn-primary" href="{{ url('comisiones') }}">Regresar ←</a>
 
 </form>
 </div>

@@ -1,25 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
-<link rel="stylesheet" href="css/font-awesome.css">
-<link rel="stylesheet" href="css/estilo.css">
 
 <div class="container">
 
-<style>
-	p {
- 		 font-size: 200%;
-	}
-	.rojo {
- 		 color: red;
-	}
-	.verde {
-  		color: green;
-	}	
-</style>
-
-
-<!-- Seccion que permite mostrar mensajes en pantalla-->
+<!-- Seccion que permite mostrar mensajes de error en pantalla-->
 @if(count($errors)>0)
 <div class="alert alert-danger" role="alert">
 	<ul>
@@ -30,9 +15,9 @@
 </div>
 @endif
 
-<!--Seccion que mediante el llenado de un formulario, permite crear una encuesta.
-	Posteriormente, los datos son enviados mediante el método POST a la url "/encuestas"-->
-<form action="{{url('/admin/guardarAcademico')}}" class="form-horizontal" method="post">
+<!--Seccion que mediante el llenado de un formulario, permite crear un nuevo académico.
+	Posteriormente, los datos son enviados mediante el método POST a la url "/guardarAcademico"-->
+<form action="{{url('/guardarAcademico')}}" class="form-horizontal" method="post">
 	{{ csrf_field() }}
 
 	<div class="form-group">
@@ -79,7 +64,7 @@
 				background-clip: padding-box;
 				border: 1px solid #ced4da;
 				border-radius: .25rem;">
-			<option selected></option>	
+			<option value="" disabled selected>Seleccionar Departamento</option>	
 				@foreach($departamentos as $dato)
 					<option value="{{$dato->nombre}}">{{$dato->nombre}}</option>
 				@endforeach
@@ -101,7 +86,7 @@
 				background-clip: padding-box;
 				border: 1px solid #ced4da;
 				border-radius: .25rem;">
-			<option selected></option>	
+			<option value="" disabled selected>----</option>	
 				<option value="Instructor">Instructor</option>
 				<option value="Auxiliar">Auxiliar</option>
 				<option value="Adjunto">Adjunto</option>
@@ -112,7 +97,7 @@
 
 	<div class="form-group">
 		<label for="horas_contrato" class="control-label">{{'Horas'}}</label>
-		<input type="text" class="form-control {{$errors->has('horas_contrato')?'is-invalid':''}}" name="horas_contrato" id="horas_contrato" placeholder="Máximo 44">
+		<input type="number" min="0" max="44" step="1" class="form-control {{$errors->has('horas_contrato')?'is-invalid':''}}" name="horas_contrato" id="horas_contrato" placeholder="Máximo 44">
 		{!! $errors->first('horas_contrato','<div class="invalid-feedback">:message</div>') !!}
 	</div>
 
@@ -123,7 +108,7 @@
 	</div>
 
 	<input type="submit" class="btn btn-success" value="Agregar ✚">
-	<a class="btn btn-primary" href="{{ url('admin/academicos') }}">Regresar ←</a>
+	<a class="btn btn-primary" href="{{ url('academicos') }}">Regresar ←</a>
 
 </form>
 </div>

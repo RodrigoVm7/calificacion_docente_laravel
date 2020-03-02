@@ -11,8 +11,9 @@
 </div>
 @endif
 
-<!-- Boton que se ubicará en la parte superior de la pantalla, y redigirá a una url para agregar encuestas-->
 <h2>Facultades</h2><br>
+
+<!-- Formulario que permite buscar una facultad a partir de su codigo-->
 <form action="{{url('/admin/buscarFacultad')}}" class="form-horizontal" method="post">
 	{{ csrf_field() }}
 	<div class="form-group">
@@ -21,11 +22,11 @@
 	</div>
 </form>
 
+<!-- Conjunto de botones que permiten agregar nueva facultad, refrescar la pagina y regresar en la navegacion-->
 <a href="{{ url('admin/añadirFacultad') }}" class="btn btn-success" >✚ Nueva Facultad</a>
 <a href="{{ url('admin/facultades') }}" class="btn btn-success" >↻ Refrescar</a>
 <a href="{{ url('index') }}" class="btn btn-success" >⏎ Regresar</a>
-<br/>
-<br/>
+<br><br>
 
 <!-- Seccion que permite que hará que todo lo que se muestre a continuacion, sea dentro de una tabla-->
 <table class="table table-light table-hover">
@@ -41,7 +42,8 @@
 	</thread>
 
 	<tbody>
-		<!-- Mediante un ciclo For, se mostrará dentro de la tabla el contenido de cada encuesta-->
+		<!-- Mediante un ciclo For, se mostrará dentro de la tabla el contenido de cada facultad, junto con un boton que permite editar
+			 la facultad seleccionada-->
 		@foreach($datos as $facultad)
 		<tr>
 			<td>{{ $facultad->nombre}}</td>

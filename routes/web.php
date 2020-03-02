@@ -1,15 +1,7 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+/* Conjunto de Rutas que serán frecuentadas por el software.
+Junto con cada ruta, se debe especificar el método a utilizar (get/post) junto con el controlador y la función asociada a ejecutar. */
 
 Route::get('/', function () {
     return view('welcome');
@@ -17,22 +9,21 @@ Route::get('/', function () {
 
 Auth::routes(['register'=>false,'reset'=>false]);
 
-//Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/index','usersController@index');
 
-Route::get('/admin/academicos','AcademicoController@index');
-Route::get('/admin/añadirAcademico','AcademicoController@create');
-Route::post('/admin/guardarAcademico','AcademicoController@store');
-Route::post('/admin/buscarAcademico','AcademicoController@buscar');
-Route::get('/admin/academico/{rut}/edit','AcademicoController@edit');
-Route::post('/admin/academico/{rut}/update','AcademicoController@update');
+Route::get('/academicos','AcademicoController@index');
+Route::get('/añadirAcademico','AcademicoController@create');
+Route::post('/guardarAcademico','AcademicoController@store');
+Route::post('/buscarAcademico','AcademicoController@buscar');
+Route::get('/academico/{rut}/edit','AcademicoController@edit');
+Route::post('/academico/{rut}/update','AcademicoController@update');
 
-Route::get('/admin/comisiones','ComisionController@index');
-Route::get('/admin/añadirComision','ComisionController@create');
-Route::post('/admin/guardarComision','ComisionController@store');
-Route::post('/admin/buscarComision','ComisionController@buscar');
-Route::get('/admin/comision/{id_comision}/edit','ComisionController@edit');
-Route::post('/admin/comision/{id_comision}/update','ComisionController@update');
+Route::get('/comisiones','ComisionController@index');
+Route::get('/añadirComision','ComisionController@create');
+Route::post('/guardarComision','ComisionController@store');
+Route::post('/buscarComision','ComisionController@buscar');
+Route::get('/comision/{id_comision}/edit','ComisionController@edit');
+Route::post('/comision/{id_comision}/update','ComisionController@update');
 
 Route::get('/admin/facultades','FacultadController@index');
 Route::get('/admin/añadirFacultad','FacultadController@create');
@@ -58,6 +49,28 @@ Route::get('/admin/reenviarContraseña','usersController@reenviarContraseña');
 Route::get('/admin/usuario/{email}/nuevaContraseña','usersController@nuevaContraseña');
 
 Route::get('/admin/periodos','PeriodoController@index');
-Route::post('/admin/añoPeriodo/','PeriodoController@accion');
+Route::post('/admin/añoPeriodo','PeriodoController@accion');
 
+Route::get('/evaluacion','EvaluacionController@index');
+Route::post('/evaluar','EvaluacionController@evaluar');
+Route::post('/guardarEvaluacion','EvaluacionController@store');
+Route::get('/evaluacion/actualizar/{id_evaluacion}','EvaluacionController@actualizar');
+Route::post('/evaluacion/update','EvaluacionController@update');
 
+Route::get('/reportes','ReportesController@index');
+Route::get('/generarPDF/{periodo}','ReportesController@generarPDF');
+Route::get('/generarExc/{periodo}','ReportesController@generarExc');
+Route::get('/habilitarSubidaArchivos','ReportesController@habilitarSubida');
+Route::get('/subirFirma/{periodo}','ReportesController@subirFirma');
+Route::post('/guardarFirma','ReportesController@guardarFirma');
+Route::get('/verFirma/{periodo}','ReportesController@verFirma');
+Route::post('/buscarReporte','ReportesController@buscar');
+Route::get('/habilitarSubirBuscado/{periodo}','ReportesController@habilitarSubidaBuscado');
+
+Route::get('/admin/graficos','GraficosController@index');
+Route::post('/admin/graficar','GraficosController@graficar');
+Route::get('/graficoAcademico/{rut}','GraficosController@graficoAcademico');
+Route::post('/admin/graficoAcademicoPeriodo','GraficosController@graficoAcademicoPeriodo');
+
+Route::get('/secretario/graficos','GraficosController@secretarioIndex');
+Route::post('/secretario/graficar','GraficosController@secretarioGraficar');

@@ -11,21 +11,22 @@
 </div>
 @endif
 
-<!-- Boton que se ubicará en la parte superior de la pantalla, y redigirá a una url para agregar encuestas-->
 <h2>Comisiones</h2><br>
-<form action="{{url('/admin/buscarComision')}}" class="form-horizontal" method="post">
+
+<!-- Sección que permite mediante el id, buscar una comisión en particular-->
+<form action="{{url('/buscarComision')}}" class="form-horizontal" method="post">
 	{{ csrf_field() }}
 	<div class="form-group">
-		<input type="text" class="form-control {{$errors->has('id_comision')?'is-invalid':''}}" name="id_comision" id="id_comision" placeholder="Búsqueda Global">
+		<input type="text" class="form-control {{$errors->has('id_comision')?'is-invalid':''}}" name="id_comision" id="id_comision" placeholder="Búscar Comisión mediante una ID">
 		{!! $errors->first('id_comision','<div class="invalid-feedback">:message</div>') !!}
 	</div>
 </form>
 
-<a href="{{ url('admin/añadirComision') }}" class="btn btn-success" >✚ Nueva Comisión</a>
-<a href="{{ url('admin/comisiones') }}" class="btn btn-success" >↻ Refrescar</a>
+<!-- Conjunto de botones que permiten agregar una nueva comisión, refrescar la página y regresar a la pantalla anterior de navegación-->
+<a href="{{ url('añadirComision') }}" class="btn btn-success" >✚ Nueva Comisión</a>
+<a href="{{ url('comisiones') }}" class="btn btn-success" >↻ Refrescar</a>
 <a href="{{ url('index') }}" class="btn btn-success" >⏎ Regresar</a>
-<br/>
-<br/>
+<br><br>
 
 <!-- Seccion que permite que hará que todo lo que se muestre a continuacion, sea dentro de una tabla-->
 <table class="table table-light table-hover">
@@ -45,7 +46,8 @@
 	</thread>
 
 	<tbody>
-		<!-- Mediante un ciclo For, se mostrará dentro de la tabla el contenido de cada comision-->
+		<!-- Mediante un ciclo For, se mostrará dentro de la tabla el contenido de cada comision, junto con un botón que permite
+			 editar la comisión seleccionada-->
 		@foreach($datos as $comision)
 		<tr>
 			<td>{{ $comision->facultad}}</td>
@@ -56,7 +58,7 @@
 			<td>{{ $comision->miembro2}}</td>
 			<td>{{ $comision->estado}}</td>
 			<td>
-			<a class="btn btn-warning" href="{{ url('/admin/comision/'.$comision->id_comision.'/edit') }}">✎
+			<a class="btn btn-warning" href="{{ url('/comision/'.$comision->id_comision.'/edit') }}">✎
 			</td>
 		</tr>
 		@endforeach

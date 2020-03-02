@@ -11,18 +11,20 @@
 </div>
 @endif
 
-<!-- Boton que se ubicará en la parte superior de la pantalla, y redigirá a una url para agregar encuestas-->
 <h2>Académicos</h2><br>
-<form action="{{url('/admin/buscarAcademico')}}" class="form-horizontal" method="post">
+
+<!-- Sección que permite buscar un académico en particular en el sistema a partir del Rut-->
+<form action="{{url('buscarAcademico')}}" class="form-horizontal" method="post">
 	{{ csrf_field() }}
 	<div class="form-group">
-		<input type="text" class="form-control {{$errors->has('rut')?'is-invalid':''}}" name="rut" id="rut" placeholder="Buscar">
+		<input type="text" class="form-control {{$errors->has('rut')?'is-invalid':''}}" name="rut" id="rut" placeholder="Buscar Rut">
 		{!! $errors->first('rut','<div class="invalid-feedback">:message</div>') !!}
 	</div>
 </form>
 
-<a href="{{ url('admin/añadirAcademico') }}" class="btn btn-success" >✚ Nuevo Académico</a>
-<a href="{{ url('admin/academicos') }}" class="btn btn-success" >↻ Refrescar</a>
+<!-- Conjunto de botones que permite realizar las acciones de agregar nuevo académico, refrescar la págica y regresar a la pantalla anterior de navegación-->
+<a href="{{ url('añadirAcademico') }}" class="btn btn-success" >✚ Nuevo Académico</a>
+<a href="{{ url('academicos') }}" class="btn btn-success" >↻ Refrescar</a>
 <a href="{{ url('index') }}" class="btn btn-success" >⏎ Regresar</a>
 <br/>
 <br/>
@@ -30,7 +32,7 @@
 <!-- Seccion que permite que hará que todo lo que se muestre a continuacion, sea dentro de una tabla-->
 <table class="table table-light table-hover">
 
-	<!-- Cabecera de la tabla, donde se especifica los datos que tendrá cada columna-->
+	<!-- Cabecera de la tabla, donde se define el nombre que tendrá cada columna-->
 	<thread class="thread-light">
 		<tr>
 			<th>Rut</th>
@@ -44,7 +46,8 @@
 	</thread>
 
 	<tbody>
-		<!-- Mediante un ciclo For, se mostrará dentro de la tabla el contenido de cada encuesta-->
+		<!-- Mediante un ciclo For, se mostrará dentro de la tabla el contenido de cada académico existente, junto con un botón que permitirá
+			 actualizar los datos del académico seleccionado-->
 		@foreach($datos as $academico)
 		<tr>
 			<td>{{ $academico->rut}}</td>
@@ -54,7 +57,7 @@
 			<td>{{ $academico->titulo}}</td>
 			<td>{{ $academico->estado}}</td>
 			<td>
-			<a class="btn btn-warning" href="{{ url('/admin/academico/'.$academico->rut.'/edit') }}">✎
+			<a class="btn btn-warning" href="{{ url('/academico/'.$academico->rut.'/edit') }}">✎
 			</td>
 		</tr>
 		@endforeach

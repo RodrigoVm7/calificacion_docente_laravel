@@ -11,9 +11,7 @@
 </div>
 @endif
 
-
-<br/>
-<br/>
+<br><br>
 
 <!-- Seccion que permite que hará que todo lo que se muestre a continuacion, sea dentro de una tabla-->
 <table class="table table-light table-hover">
@@ -29,7 +27,8 @@
 	</thread>
 
 	<tbody>
-		<!-- Mediante un ciclo For, se mostrará dentro de la tabla el contenido de cada encuesta-->
+		<!-- Mediante un ciclo For, se mostrará dentro de la tabla el contenido de cada departamento, junto con un boton que
+			 permitirá editar el departamento seleccionado-->
 		@foreach($datos as $departamento)
 		<tr>
 			<td>{{ $departamento->nombre}}</td>

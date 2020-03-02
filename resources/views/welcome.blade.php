@@ -59,7 +59,18 @@
             }
 
             .m-b-md {
-                margin-bottom: 30px;
+                margin-bottom: 90px;
+            }
+
+            .imagenUcm{
+                text-align: center;
+                opacity:0.4;
+                position: fixed;
+                bottom:100px;
+                right: 0;
+                left: 0;
+                margin-right: auto;
+                margin-left: auto;
             }
         </style>
     </head>
@@ -68,7 +79,7 @@
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
-                        <a href="{{ url('/home') }}">Home</a>
+                        <a href="{{ url('/index') }}">Entrar</a>
                     @else
                         <a href="{{ route('login') }}">Login</a>
 
@@ -83,7 +94,7 @@
                 <div class="title m-b-md">
                     Sistema SEA
                 </div>
-
+            <div class="imagenUcm" ><img src="{{asset('images/UCM.png')}}" width="400" height="180"></div>
                 
             </div>
         </div>
