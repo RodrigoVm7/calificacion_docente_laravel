@@ -8,7 +8,8 @@ use Illuminate\Http\Request;
 class PeriodoController extends Controller{
 
     /* Funcion que retorna a la pagina principal de la pestaña Periodo, junto con los datos de periodos que se puedan encontrar activos*/
-    public function index(){
+    public function index(Request $request){
+		$request->user()->authorizeRoles(['Admin']);
         $activos=Periodo::where('estado','=','ACTIVO')->get();
         return view('periodo.index',compact('activos'));
     }
@@ -16,6 +17,7 @@ class PeriodoController extends Controller{
     /* Funcion que recibe los datos de la pagina principal de la pestaña Periodo. Recibe los datos del periodo a seleccionar y la accion a
        ejecutar, la cual puede ser activar o desactivar dicho periodo*/
     public function accion(Request $request){
+		$request->user()->authorizeRoles(['Admin']);
     	/*Validación de que se ingresa el campo*/
     	$campos=[
             'year' => 'required|string|min:4'

@@ -9,19 +9,22 @@ use Illuminate\Http\Request;
 class DepartamentoController extends Controller{
 
     /* Funcion que retorna a la pagina principal de la pestaña Departamento, junto con los datos de los departamentos existentes*/
-    public function index(){
+    public function index(Request $request){
+        $request->user()->authorizeRoles(['Admin']);
         $datos=Departamento::paginate(3);
         return view('departamento.index',compact('datos'));
     }
 
     /* Funcion que retorna a la pagina que permite crear un nuevo departamento*/
-    public function create(){
+    public function create(Request $request){
+        $request->user()->authorizeRoles(['Admin']);
         $facultades=facultad::all();
     	return view('departamento.create',compact('facultades'));
     }
 
     /* Funcion que recibe los datos del formulario para crear un nuevo departamento, para posteriormente ingresarlo a la base de datos*/
     public function store(Request $request){
+        $request->user()->authorizeRoles(['Admin']);
     	$campos=[
             'nombre' => 'required|string|min:2',
             'facultad' => 'required|string|min:2'
@@ -34,7 +37,8 @@ class DepartamentoController extends Controller{
     }
 
     /* Funcion que retorna a la pagina que permite editar la informacion de un departameno en particular*/
-    public function edit($cod_departamento){
+    public function edit(Request $request, $cod_departamento){
+        $request->user()->authorizeRoles(['Admin']);
     	$departamento=Departamento::findOrFail($cod_departamento);
         $facultades=facultad::all();
     	return view('departamento.edit',compact('departamento','facultades'));
@@ -43,6 +47,7 @@ class DepartamentoController extends Controller{
     /* Funcion que recibe los datos del formulario para editar un departamento, para posteriormente ingresar a la base de datos la 
        información actualizada*/
     public function update(Request $request, $cod_departamento){
+        $request->user()->authorizeRoles(['Admin']);
     	$datosDepartamento=request()->except('_token');
     	Departamento::where('cod_departamento','=',$cod_departamento)->update($datosDepartamento);
     	return redirect('admin/departamentos')->with('Mensaje','Departamento actualizado correctamente');
@@ -50,6 +55,7 @@ class DepartamentoController extends Controller{
 
     /* Funcion que retorna una vista con los datos del departamento buscado mediante el codigo*/
     public function buscar(Request $request){
+        $request->user()->authorizeRoles(['Admin']);
     	$cod_departamento=request()->input('cod_departamento');
     	$datos=Departamento::where('cod_departamento','=',$cod_departamento)->get();
     	return view('departamento.buscar',compact('datos'));

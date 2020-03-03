@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use App\Role_User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -58,6 +59,16 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $role_u = new Role_User();
+        if($data['permiso'] == "Admin"){
+            $role_u->role_id=1;
+        }
+        if($data['permiso'] == "Secretario"){
+            $role_u->role_id=2;
+        }
+        $role_u->user_email = $data['email'];
+        $role_u->save();
+
         return User::create([
             'email'=>$data['email'],
             'permiso' => $data['permiso'],

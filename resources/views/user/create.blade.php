@@ -52,8 +52,8 @@
 				background-clip: padding-box;
 				border: 1px solid #ced4da;
 				border-radius: .25rem;">
-			<option selected value="secretario">Secretario</option>	
-				<option value="admin">Admin</option>
+			<option selected value="Secretario">Secretario</option>	
+				<option value="Admin">Admin</option>
 		</select>
 		{!! $errors->first('Permiso','<div class="invalid-feedback">:message</div>') !!}
 	</div>

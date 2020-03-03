@@ -13,6 +13,7 @@ class GraficosController extends Controller{
 
     /* Funcion que retorna a la pagina principal de la pestaña Graficos para el usuario Administradorr, junto con los datos de periodos, facultades, departamentos y academicos disponibles; asi como tambien los datos para graficar*/
 	public function index(Request $request){
+		$request->user()->authorizeRoles(['Admin']);
 		$evaluaciones=Evaluacion::all();
 		$datosGrafico = new \stdClass;
 		$datosGrafico->totalActividad1=0;
@@ -58,6 +59,7 @@ class GraficosController extends Controller{
 	/* Función  que recibe datos de la vista del Administrador. Recibe los parametros periodo y/o departamento y/o facultad, para modificar
 	   el gráfico de acuerdo a los nuevos filtros.*/
 	public function graficar(Request $request){
+		$request->user()->authorizeRoles(['Admin']);
 		$seleccionado = new \stdClass;
 		
 		if($request->input('periodo')!="" && $request->input('facultad')=="" && $request->input('departamento')==""){	//Solo Periodo
@@ -135,7 +137,8 @@ class GraficosController extends Controller{
 
 	/* Funcion que retorna a la vista con informacion detallada de un academico en particular. En dicha vista se presentan dos graficos, uno
 	   con el tiempo total destinado a cada actividad, y otro con las notas finales obtenidas por el academico*/
-	public function graficoAcademico($rut){
+	public function graficoAcademico(Request $request, $rut){
+		$request->user()->authorizeRoles(['Admin']);
 		$evaluaciones=Evaluacion::where('rut_academico','=',$rut)->get();
 
 		if($evaluaciones!="[]"){
@@ -183,6 +186,7 @@ class GraficosController extends Controller{
 	/* Funcion que recibe datos de la vista donde se presenta informacion junto con graficos de un academico. Recibe el parametro periodo, 
 	   para modificar ambos graficos de acuerdo al nuevo filtro*/
 	public function graficoAcademicoPeriodo(Request $request){
+		$request->user()->authorizeRoles(['Admin']);
 		$evaluacion=Evaluacion::where('rut_academico','=',$request->input('rut'))->where('año','=',$request->input('periodo'))->first();
 		if($evaluacion==""){
 			return redirect('graficoAcademico/'.$request->input('rut'))->with('Mensaje','No hay datos para el periodo seleccionado');
@@ -221,6 +225,7 @@ class GraficosController extends Controller{
 	/* Funcion que retorna a la pagina principal de la pestaña Graficos para el usuario Secretario, junto con los datos de periodos,
 	   departamentos y academicos disponibles; asi como tambien los datos para el primer gráfico*/
 	public function secretarioIndex(Request $request){
+		$request->user()->authorizeRoles(['Admin','Secretario']); 
 		$evaluaciones=Evaluacion::where('facultad','=',auth()->user()->facultad)->get();
 		$datosGrafico = new \stdClass;
 		$datosGrafico->totalActividad1=0;
@@ -265,6 +270,7 @@ class GraficosController extends Controller{
 	/* Función  que recibe datos de la vista del Secretario. Recibe los parametros periodo y/o departamento, para modificar
 	   el o ambos gráficos de acuerdo a los nuevos filtros.*/
 	public function secretarioGraficar(Request $request){
+		$request->user()->authorizeRoles(['Admin','Secretario']); 
 		$seleccionado = new \stdClass;
 
 		if($request->input('periodo')!="" && $request->input('departamento')==""){	//solo periodo
