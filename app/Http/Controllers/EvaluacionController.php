@@ -20,7 +20,7 @@ class EvaluacionController extends Controller{
         }else{
             $facultadUsuario=auth()->user()->facultad;
             $comisiones=Comision::where('facultad','=',$facultadUsuario)->where('estado','=','ACTIVO')->get();
-            $academicos=academico::join('departamento as d1','academico.departamento','=','d1.nombre')->where('d1.facultad','=',$facultadUsuario)->where('academico.estado','=','ACTIVO')->paginate(5);
+            $academicos=Academico::where('facultad','=',$facultadUsuario)->paginate(5);
             if($comisiones=="[]"){
                 return view('evaluacion.index')->with('comisiones',$comisiones)->with('academicos',$academicos)->with('facultadUsuario',$facultadUsuario)->with('Mensaje','No Existen Comisiones Configuradas para esta Facultad');
             }else{

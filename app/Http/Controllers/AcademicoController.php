@@ -11,8 +11,7 @@ class AcademicoController extends Controller{
     /* Funcion que retorna a la pagina principal de la pestaña academicos, junto con los datos de academicos de la facultad del usuario*/
     public function index(Request $request){
         $request->user()->authorizeRoles(['Admin','Secretario']); 
-        $facultad=auth()->user()->facultad;
-    	$datos=Academico::join('departamento as d1','academico.departamento','=','d1.nombre')->where('d1.facultad','=',$facultad)->paginate(3);
+        $datos=Academico::where('facultad','=',auth()->user()->facultad)->paginate(3);
     	return view('academico.index',compact('datos'));
     }
 
@@ -21,7 +20,7 @@ class AcademicoController extends Controller{
         $request->user()->authorizeRoles(['Admin','Secretario']); 
         $facultad=auth()->user()->facultad;
         $departamentos=Departamento::where('facultad','=',$facultad)->get();
-    	return view('academico.create',compact('departamentos'));
+    	return view('academico.create',compact('departamentos','facultad'));
     }
 
     /* Funcion que recibe los datos del formulario para crear un nuevo academico, para posteriormente ingresarlo a la base de datos*/
@@ -58,7 +57,8 @@ class AcademicoController extends Controller{
         $request->user()->authorizeRoles(['Admin','Secretario']); 
     	$academico=Academico::findOrFail($rut);
         $departamentos=Departamento::where('facultad','=',auth()->user()->facultad)->get();
-    	return view('academico.edit',compact('academico','departamentos'));
+        $facultad=auth()->user()->facultad;
+    	return view('academico.edit',compact('academico','departamentos','facultad'));
     }
 
     /* Funcion que recibe los datos del formulario para editar un academico, para posteriormente ingresar a la base de datos la 

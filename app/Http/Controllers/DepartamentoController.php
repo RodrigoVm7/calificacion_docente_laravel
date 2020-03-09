@@ -11,7 +11,7 @@ class DepartamentoController extends Controller{
     /* Funcion que retorna a la pagina principal de la pestaña Departamento, junto con los datos de los departamentos existentes*/
     public function index(Request $request){
         $request->user()->authorizeRoles(['Admin']);
-        $datos=Departamento::paginate(3);
+        $datos=Departamento::where('facultad','=',auth()->user()->facultad)->paginate(3);
         return view('departamento.index',compact('datos'));
     }
 

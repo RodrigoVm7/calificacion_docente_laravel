@@ -7,7 +7,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes(['register'=>true,'reset'=>false]);
+Auth::routes(['register'=>false,'reset'=>false]);
 
 Route::get('/index','usersController@index');
 

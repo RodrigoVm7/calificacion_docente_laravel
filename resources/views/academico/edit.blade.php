@@ -60,6 +60,8 @@
 		{!! $errors->first('departamento','<div class="invalid-feedback">:message</div>') !!}
 	</div>
 
+	<input type="text" class="form-control {{$errors->has('facultad')?'is-invalid':''}}" name="facultad" id="facultad" value="{{ $facultad}}" hidden=></li>
+
 	<div class="form-group">
 		<label for="categoria" class="control-label">{{'Categoria'}}</label><br>
 		<select name="categoria" id="categoria" size="1" style="

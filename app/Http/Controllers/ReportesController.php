@@ -15,8 +15,7 @@ class ReportesController extends Controller{
 
     /* Función que retorna a la página principal de la pestaña Reportes, junto con los datos de los periodos disponibles. */
     public function index(){
-        //$periodos=Periodo::where('estado','=','INACTIVO')->paginate(5);
-        $periodos=Periodo::paginate(5);
+        $periodos=Periodo::where('estado','=','INACTIVO')->paginate(5);
         $subida=0;
         return view('reportes.index',compact('periodos','subida'));
     }
@@ -46,8 +45,7 @@ class ReportesController extends Controller{
 
     /* Funcion que se encarga de habilitar el botón que permite subir un archivo con firmas junto a cada periodo disponible */
     public function habilitarSubida(Request $request){
-        //$periodos=Periodo::where('estado','=','INACTIVO')->paginate(5);
-        $periodos=Periodo::paginate(5);
+        $periodos=Periodo::where('estado','=','INACTIVO')->paginate(5);
         $subida=1;
         return view('reportes.index',compact('periodos','subida'));
     }

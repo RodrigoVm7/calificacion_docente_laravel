@@ -40,8 +40,7 @@ class GraficosController extends Controller{
 			}
 		}
 		
-		//$periodos=Periodo::where('estado','=','INACTIVO')->get();
-		$periodos=Periodo::all();
+		$periodos=Periodo::where('estado','=','INACTIVO')->get();
 		$facultades=Facultad::all();
 		$departamentos=Departamento::all();
 		$academicos=Academico::paginate(5);
@@ -168,8 +167,7 @@ class GraficosController extends Controller{
 					$datosGrafico->totalActividad5=$datosGrafico->totalActividad5+$dato->tiempoActividad5;
 				}
 			}
-
-			$periodos=Periodo::all();
+			$periodos=Periodo::where('estado','=','INACTIVO')->get();
 			$seleccionado="";
 			$calificacionesFinales=Evaluacion::where('rut_academico','=',$rut)->select('año','nota_final')->get();
 			$permiso=auth()->user()->permiso;
@@ -214,7 +212,7 @@ class GraficosController extends Controller{
 			if($evaluacion->tiempoActividad5!=""){
 				$datosGrafico->totalActividad5=$evaluacion->tiempoActividad5;
 			}
-			$periodos=Periodo::all();
+			$periodos=Periodo::where('estado','=','INACTIVO')->get();
 			$seleccionado=$request->input('periodo');
 			$calificacionesFinales=Evaluacion::where('rut_academico','=',$request->input('rut'))->select('año','nota_final')->get();
 			$permiso=auth()->user()->permiso;
@@ -251,9 +249,7 @@ class GraficosController extends Controller{
 				$datosGrafico->totalActividad5=$datosGrafico->totalActividad5+$dato->tiempoActividad5;
 			}
 		}
-		
-		//$periodos=Periodo::where('estado','=','INACTIVO')->get();
-		$periodos=Periodo::all();
+		$periodos=Periodo::where('estado','=','INACTIVO')->get();
 		$departamentos=Departamento::where('facultad','=',auth()->user()->facultad)->get();
 		$seleccionado = new \stdClass;
 		$seleccionado->periodo="";
@@ -311,7 +307,7 @@ class GraficosController extends Controller{
 				$datosGrafico->totalActividad5=$datosGrafico->totalActividad5+$dato->tiempoActividad5;
 			}
 		}
-		$periodos=Periodo::all();
+		$periodos=Periodo::where('estado','=','INACTIVO')->get();
 		$departamentos=Departamento::where('facultad','=',auth()->user()->facultad)->get();
 		$academicos=Academico::join('departamento as d1', 'academico.departamento','=','d1.nombre')->where('d1.facultad','=',auth()->user()->facultad)->get();
 

@@ -20,6 +20,7 @@ class CreateAcademicoTable extends Migration
             $table->string('titulo');
             $table->string('grado_academico');
             $table->string('departamento');
+            $table->string('facultad');
             $table->string('categoria');
             $table->string('horas_contrato');
             $table->string('tipo_planta');
