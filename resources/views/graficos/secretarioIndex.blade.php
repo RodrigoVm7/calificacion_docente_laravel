@@ -206,5 +206,9 @@
 	</tbody>
 </table>
 
+<div class="text-center">
+	{{$academicos->links()}}
+</div>
+
 </div>
 @endsection

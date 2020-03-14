@@ -55,7 +55,7 @@ class ComisionController extends Controller{
     }
 
     /* Funcion que retorna a la pagina que permite editar la informacion de una comision en particular*/
-    public function edit(Reques $request, $id_comision){
+    public function edit(Request $request, $id_comision){
         $request->user()->authorizeRoles(['Admin','Secretario']); 
     	$comision=Comision::findOrFail($id_comision);
         $facultades=facultad::all();

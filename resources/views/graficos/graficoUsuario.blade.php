@@ -13,7 +13,7 @@
 
 <h2>Gráficos {{$datosGrafico->nombre}}</h2><br>
 
-@if($permiso!='secretario')
+@if($permiso!='Secretario')
   <a href="{{ url('admin/graficos') }}" class="btn btn-success" >⏎ Regresar</a>
 @else
   <a href="{{ url('secretario/graficos') }}" class="btn btn-success" >⏎ Regresar</a>

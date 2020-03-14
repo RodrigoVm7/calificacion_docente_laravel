@@ -43,7 +43,7 @@ class GraficosController extends Controller{
 		$periodos=Periodo::where('estado','=','INACTIVO')->get();
 		$facultades=Facultad::all();
 		$departamentos=Departamento::all();
-		$academicos=Academico::paginate(5);
+		$academicos=Academico::where('facultad','=',auth()->user()->facultad)->paginate(5);
 		$seleccionado = new \stdClass;
 		$seleccionado->periodo="";
 		$seleccionado->facultad="";
@@ -126,7 +126,7 @@ class GraficosController extends Controller{
 		$periodos=Periodo::all();
 		$facultades=Facultad::all();
 		$departamentos=Departamento::all();
-		$academicos=Academico::paginate(5);
+		$academicos=Academico::where('facultad','=',auth()->user()->facultad)->paginate(5);
 		if($evaluaciones=="[]"){
 			return view('graficos.index',compact('datosGrafico','periodos','facultades','departamentos','seleccionado','academicos'))->with('Mensaje','No hay datos para mostrar');
 		}else{
@@ -137,7 +137,7 @@ class GraficosController extends Controller{
 	/* Funcion que retorna a la vista con informacion detallada de un academico en particular. En dicha vista se presentan dos graficos, uno
 	   con el tiempo total destinado a cada actividad, y otro con las notas finales obtenidas por el academico*/
 	public function graficoAcademico(Request $request, $rut){
-		$request->user()->authorizeRoles(['Admin']);
+        $request->user()->authorizeRoles(['Admin','Secretario']); 
 		$evaluaciones=Evaluacion::where('rut_academico','=',$rut)->get();
 
 		if($evaluaciones!="[]"){
@@ -255,7 +255,7 @@ class GraficosController extends Controller{
 		$seleccionado->periodo="";
 		$seleccionado->departamento="";
 
-		$academicos=Academico::join('departamento as d1', 'academico.departamento','=','d1.nombre')->where('d1.facultad','=',auth()->user()->facultad)->get();
+		$academicos=Academico::where('facultad','=',auth()->user()->facultad)->paginate(5);
 		if($evaluaciones=="[]"){
 			return view('graficos.secretarioIndex',compact('datosGrafico','periodos','departamentos','seleccionado','academicos'))->with('Mensaje','No hay datos para mostrar');
 		}else{
@@ -309,7 +309,7 @@ class GraficosController extends Controller{
 		}
 		$periodos=Periodo::where('estado','=','INACTIVO')->get();
 		$departamentos=Departamento::where('facultad','=',auth()->user()->facultad)->get();
-		$academicos=Academico::join('departamento as d1', 'academico.departamento','=','d1.nombre')->where('d1.facultad','=',auth()->user()->facultad)->get();
+		$academicos=Academico::where('facultad','=',auth()->user()->facultad)->paginate(5);
 
 		if($evaluaciones=="[]"){
 			return view('graficos.secretarioIndex',compact('datosGrafico','periodos','departamentos','seleccionado','evaluaciones','academicos'))->with('Mensaje','No hay datos para mostrar');
